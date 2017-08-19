@@ -1,0 +1,8 @@
+
+       {% for key,product in order.products %}
+         {% if product.name not in ['Payment costs', 'Coûts de paiement'] %} {# To remove the "payment costs" line item on the invoice for English and French shops - Alex Wintschel, Aug 11, 2017 #}
+            
+            {% Contents of product loop removed #}
+            
+          {% endif %} {# Closing out if statement - Alex Wintschel, Aug 11, 2017 #}
+        {% endfor %}
