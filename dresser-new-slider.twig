@@ -1,16 +1,16 @@
 
-<div id="newprodslider" class="featured col-md-12 col-xs-12 col-sm-12"> {# Added an ID to the slider. Alex Wintschel, Aug 11, 2017 #}
+<div id="newprodslider" class="featured col-md-12 col-xs-12 col-sm-12"> {# Added an ID to the slider. #}
   <h2>{{ 'New products' | t }}</h2>
   <div class="border">
     <div class="slider">
       <ul>
         {% for product in newest %}
-        {#{% if product.data_01 != 'look' %} Commenting out original code and replacing with line 189 for more control over homepage slider - Alex Wintschel, Aug 11, 2017 #}
+        {#{% if product.data_01 != 'look' %} Commenting out original code and replacing with line 189 for more control over homepage slider #}
          {% if product.data_01 == 'new' %}
         
           {# Bulk of slider code omitted #}
 
-{# If there are no "new" products in the slider on the homepage, make it disappear - Alex Wintschel, Aug 11, 2017 #}
+{# If there are no "new" products in the slider on the homepage, make it disappear #}
     <script>
       var newProd = document.getElementsByClassName('newProduct');
       var newSlider = document.getElementById('newprodslider');
@@ -19,4 +19,4 @@
         newSlider.parentNode.removeChild(newSlider);
       }
     </script>
-{# If there are no "new" products in the slider on the homepage, make it disappear - Alex Wintschel, Aug 11, 2017 #}
+{# If there are no "new" products in the slider on the homepage, make it disappear #}
