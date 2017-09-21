@@ -1,16 +1,58 @@
-
-<div id="newprodslider" class="featured col-md-12 col-xs-12 col-sm-12"> {# Added an ID to the slider. Alex Wintschel, Aug 11, 2017 #}
+<div id="newprodslider" class="featured col-md-12 col-xs-12 col-sm-12">
   <h2>{{ 'New products' | t }}</h2>
   <div class="border">
     <div class="slider">
       <ul>
-        {% for product in newest %}
-        {#{% if product.data_01 != 'look' %} Commenting out original code and replacing with line 189 for more control over homepage slider - Alex Wintschel, Aug 11, 2017 #}
-         {% if product.data_01 == 'new' %}
-        
-          {# Bulk of slider code omitted #}
+        {% for product in featured %}
+        {% if product.data_01 != 'look' %}
+        <li>
+          <div class="newProduct">
+            <a href="{{ product.url | url }}">
+              {% if product.image %}
+              {% if theme.newproduct_image_fit %}
+              <img src="{{ product.image | url_image('160x200x1', product.fulltitle) }}" height="200" width="160" alt="{{ product.fulltitle }}" title="{{ product.fulltitle }}" />
+              {% else %}
+              <img src="{{ product.image | url_image('160x200x2', product.fulltitle) }}" height="200" width="160" alt="{{ product.fulltitle }}" title="{{ product.fulltitle }}" />
+              {% endif %}  
+              {% endif %}
+              <span class="new">{{ 'New' | t }}</span>
+            </a>
+          </div>
+          <div class="productInfo">
+            <a href="{{ product.url | url }}" class="no-underline">
+        {% if theme.display_brand_name %}
+        <h4>{{ product.fulltitle }}</h4> 
+        {% else %} 
+              <h4>{{ product.title }}</h4>
+                {% endif %}
+            </a>
+            <span class="price">
+              {% if product.price.price_old %}
+              <span class="line-through">{{ product.price.price_old | money }}</span>
+              {% if shop.settings.legal.mode == 'strict' %}
+              <small class="srp">{{ 'SRP' | t }} /</small>
+              {% endif %}
+              {% endif %}
+              {{ product.price.price | money }}{% if shop.settings.legal.mode == 'strict' %} <small>*</small>{% endif %}  
+            </span>
+            {% if shop.settings.legal.mode == 'strict' and product.unit %}
+            <small class="unit-price">{{ 'Unit price' | t }}: {{ product.unit.price | money }} / 
+              {{ product.unit.unit }}
+            </small>
+            {% endif %}
+          </div>
+        </li>
+        {% endif %}
+        {% endfor %} 
+      </ul>
+    </div>
+  </div>
+  <a href="#prev" class="slider-prev" title="{{ 'Previous' | t }}"><img src="{{ 'arrow-left.png' | url_asset }}" alt="{{ 'Previous' | t }}" title="slider left button" /></a>
+  <a href="#next" class="slider-next" title="{{ 'Next' | t }}"><img src="{{ 'arrow-right.png' | url_asset }}" alt="{{ 'Previous' | t }}" title="slider right button" /></a>
+</div>
+</div>
 
-{# If there are no "new" products in the slider on the homepage, make it disappear - Alex Wintschel, Aug 11, 2017 #}
+{# If there are no "new" products in the slider on the homepage, make it disappear #}
     <script>
       var newProd = document.getElementsByClassName('newProduct');
       var newSlider = document.getElementById('newprodslider');
@@ -19,4 +61,4 @@
         newSlider.parentNode.removeChild(newSlider);
       }
     </script>
-{# If there are no "new" products in the slider on the homepage, make it disappear - Alex Wintschel, Aug 11, 2017 #}
+{# If there are no "new" products in the slider on the homepage, make it disappear #}
