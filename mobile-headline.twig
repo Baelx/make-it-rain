@@ -1,5 +1,5 @@
 {% if request.device.mobile == false %}
-	<img src="{{ headline.image | url_image('', headline.title) }}" width="1138" height="800" alt="{{ headline.title }}" />
+	{# Enter main headline img tag here #}
 {% else %}
 	<img src="{{ headline.mobile_image | url_image('', headline.title) }}" width="380" height="650" alt="{{ headline.title }}" />
 {% endif %}  
