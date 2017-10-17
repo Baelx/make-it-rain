@@ -1,5 +1,17 @@
-{% if request.device.mobile == false %}
-	{# Enter main headline img tag here #}
-{% else %}
-	<img src="{{ headline.mobile_image | url_image('', headline.title) }}" width="380" height="650" alt="{{ headline.title }}" />
+    <ul>
+      {% for headline in headlines %}
+      <li>
+        {% if headline.image %}
+        {% if headline.url %}<a href="{{ headline.url | url }}" title="{{ headline.title }}">{% endif %}
+            {% if request.device.mobile == false %}
+        <img src="{{ headline.image | url_image('', headline.title) }}" width="980" alt="{{ headline.title }}" />
+        {% else %}
+	<img src="{{ headline.mobile_image | url_image('', headline.title) }}" width="380" height="450" alt="{{ headline.title }}" />
 {% endif %}  
+        {% if headline.url %}</a>{% endif %}
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    
+    {# Above format works for Dresser Theme #}
