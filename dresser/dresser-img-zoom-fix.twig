@@ -1,0 +1,7 @@
+<img src="{{ image | url_image('800x1000x2', product.fulltitle) }}" alt="{{ product.fulltitle }}" data-original-url="{{ image | url_image('', product.fulltitle) }}">
+{% else %}
+<img src="{{ image | url_image('800x1000x1', product.fulltitle) }}" alt="{{ product.fulltitle }}" data-original-url="{{ image | url_image('', product.fulltitle) }}">
+
+
+//You only need to change the parameters of the url_image method to double their origin values of "400x500x2" and "400x500x1" - excluding the 2 and 1.
+//You can insert this on lines 57 through 59 or just change the numbers to double their values
